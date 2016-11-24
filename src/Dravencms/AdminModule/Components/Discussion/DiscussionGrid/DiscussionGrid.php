@@ -23,7 +23,7 @@ namespace Dravencms\AdminModule\Components\Discussion\DiscussionGrid;
 
 use Dravencms\Components\BaseGridFactory;
 use Dravencms\Model\Discussion\Repository\DiscussionRepository;
-use App\Model\Locale\Repository\LocaleRepository;
+use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Application\UI\Control;
 
