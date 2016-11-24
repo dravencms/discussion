@@ -1,0 +1,127 @@
+<script>
+    $(document).on("click", ".react", function () {
+        var replyId = $(this).data('id');
+
+        $.ajax({
+                    type: "GET",
+                    url: {link getDiscussion, 'RidR'}.replace('RidR', replyId),
+                dataType
+        :
+        "json",
+                async
+        :
+        true,
+                success
+        :
+        function (data) {
+            if (data.created) {
+                var html = '<h2>Reakce na příspěvek:</h2>';
+                html += '<div class="post">';
+                html += '  <h3>' + data.name + ' <span class="title-info">' + data.created + '</span></h3>';
+                html += '  <p>' + data.text + '</p>';
+                html += '</div>';
+                $('input[name="discussionsPostsId"]').val(replyId);
+            }
+            else {
+                var html = '<h2>Příspěvek na který reagujete nebyl nalezen, váš příspěvek bude začínat novým vláknem.</h2>';
+            }
+
+            $('#react-text').html(html);
+        }
+    })
+        ;
+    });
+
+    $(document).on("click", ".add-post", function () {
+        $('#react-text').html('');
+        $('input[name="discussionsPostsId"]').val('');
+    });
+</script>
+
+<div class="discussion">
+    <div n:foreach="$flashes as $flash" class="alert {$flash->type}">{$flash->message}</div>
+    <div class="dheader">
+        <img src="{$basePath}/images/front/logo-small.png" alt="Logo"/>
+        <div class="textbox">
+            {if $detail->showName}
+                <h2>{$detail->name}</h2>
+            {/if}
+            <button class="btn btn-default btn-discussion add-post" data-toggle="modal" data-target="#sendPostModal">
+                Přidat vzkaz &gt;&gt;
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    {include #post, detail => $detail, childrens => false}
+</div>
+
+{define #post}
+    {var $posts = $detail->related('discussionsPosts')}
+
+    {if !$childrens}
+        {var $posts = $posts->where('discussionsPostsId', null)}
+    {/if}
+
+    <div class="post" n:foreach="$posts->order('created DESC') AS $post">
+        <h3>{$post->name} <span class="title-info">{$post->created|date:'d.m.Y H:i:s'}</span></h3>
+        <div>{$post->text|noescape}</div>
+        <div class="controls">
+            <a class="react" href="#" data-toggle="modal" data-target="#sendPostModal" data-id="{$post->id}">Reagovat</a>
+        </div>
+        <div class="childrens">
+            {include #post, detail => $post, childrens => true}
+        </div>
+    </div>
+{/define}
+
+<!-- Modal -->
+<div class="modal fade" id="sendPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        {?$control['newPostForm']['discussionsId']->setValue($detail->id)}
+        {form newPostForm}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Přidat vzkaz</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="alert alert-danger" n:if="$form->hasErrors()">
+                        <li n:foreach="$form->errors as $error">{$error}</li>
+                    </ul>
+                    <div id="react-text">
+
+                    </div>
+                    <table>
+                        <tr>
+                            <th>{label name/}</th>
+                            <td>{input name, placeholder => 'Zadejte jméno'}</td>
+                        </tr>
+                        {*<tr>
+                          <th>{label email/}</th>
+                          <td>{input email}</td>
+                        </tr>
+                        <tr>
+                          <th>{label title/}</th>
+                          <td>{input title}</td>
+                        </tr>*}
+                        <tr>
+                            <th>{label text/}</th>
+                            <td>{input text, placeholder => 'Zadejte text...'}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label" n:name="recaptcha">{_"Antispam"} <sup>*</sup></label>
+                                <div n:name="recaptcha"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-discussion" data-dismiss="modal">Zavřít</button>
+                    {input send}
+                </div>
+            </div>
+        {/form}
+    </div>
+</div>

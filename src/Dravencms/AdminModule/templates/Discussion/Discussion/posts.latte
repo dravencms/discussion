@@ -1,0 +1,7 @@
+{block #content}
+    <div class="page-header"><h1>{_$h1}</h1></div>
+    <p n:isAllowed="discussion, edit">
+        <a n:href="Discussion:editPost, discussionId => $discussion->getId()" class="btn btn-primary"><i class="fa fa-plus"></i> {_"New post"}</a>
+    </p>
+    {control gridPost}
+{/block}
