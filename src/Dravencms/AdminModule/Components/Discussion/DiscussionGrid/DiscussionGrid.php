@@ -21,18 +21,18 @@
 
 namespace Dravencms\AdminModule\Components\Discussion\DiscussionGrid;
 
-use Dravencms\Components\BaseGridFactory;
+use Dravencms\Components\BaseControl\BaseControl;
+use Dravencms\Components\BaseGrid\BaseGridFactory;
 use Dravencms\Model\Discussion\Repository\DiscussionRepository;
 use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Kdyby\Doctrine\EntityManager;
-use Nette\Application\UI\Control;
 
 /**
  * Description of DiscussionGrid
  *
  * @author Adam Schubert <adam.schubert@sg1-game.net>
  */
-class DiscussionGrid extends Control
+class DiscussionGrid extends BaseControl
 {
 
     /** @var BaseGridFactory */

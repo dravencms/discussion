@@ -20,12 +20,12 @@
 
 namespace Dravencms\AdminModule\Components\Discussion\PostForm;
 
-use Dravencms\Components\BaseFormFactory;
+use Dravencms\Components\BaseControl\BaseControl;
+use Dravencms\Components\BaseForm\BaseFormFactory;
 use Dravencms\Model\Discussion\Entities\Discussion;
 use Dravencms\Model\Discussion\Entities\Post;
 use Dravencms\Model\Discussion\Repository\PostRepository;
 use Kdyby\Doctrine\EntityManager;
-use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use Nette\Http\Request;
 
@@ -34,7 +34,7 @@ use Nette\Http\Request;
  *
  * @author Adam Schubert <adam.schubert@sg1-game.net>
  */
-class PostForm extends Control
+class PostForm extends BaseControl
 {
     /** @var BaseFormFactory */
     private $baseFormFactory;

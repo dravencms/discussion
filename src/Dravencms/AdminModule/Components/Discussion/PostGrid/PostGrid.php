@@ -21,19 +21,19 @@
 
 namespace Dravencms\AdminModule\Components\Discussion\PostGrid;
 
-use Dravencms\Components\BaseGridFactory;
+use Dravencms\Components\BaseControl\BaseControl;
+use Dravencms\Components\BaseGrid\BaseGridFactory;
 use Dravencms\Model\Discussion\Entities\Discussion;
 use Dravencms\Model\Discussion\Repository\PostRepository;
 use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Kdyby\Doctrine\EntityManager;
-use Nette\Application\UI\Control;
 
 /**
  * Description of PostGrid
  *
  * @author Adam Schubert <adam.schubert@sg1-game.net>
  */
-class PostGrid extends Control
+class PostGrid extends BaseControl
 {
 
     /** @var BaseGridFactory */

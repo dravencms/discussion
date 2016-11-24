@@ -6,8 +6,8 @@ namespace Dravencms\FrontModule\Components\Discussion\Discussion\Detail;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-use Dravencms\Components\BaseControl;
-use Dravencms\Components\BaseFormFactory;
+use Dravencms\Components\BaseControl\BaseControl;
+use Dravencms\Components\BaseForm\BaseFormFactory;
 use Nette\Application\UI\Form;
 use Nette\Application\Responses\JsonResponse;
 use Salamek\Cms\ICmsActionOption;

@@ -20,11 +20,11 @@
 
 namespace Dravencms\AdminModule\Components\Discussion\DiscussionForm;
 
-use Dravencms\Components\BaseFormFactory;
+use Dravencms\Components\BaseControl\BaseControl;
+use Dravencms\Components\BaseForm\BaseFormFactory;
 use Dravencms\Model\Discussion\Entities\Discussion;
 use Dravencms\Model\Discussion\Repository\DiscussionRepository;
 use Kdyby\Doctrine\EntityManager;
-use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 
 /**
@@ -32,7 +32,7 @@ use Nette\Application\UI\Form;
  *
  * @author Adam Schubert <adam.schubert@sg1-game.net>
  */
-class DiscussionForm extends Control
+class DiscussionForm extends BaseControl
 {
     /** @var BaseFormFactory */
     private $baseFormFactory;
