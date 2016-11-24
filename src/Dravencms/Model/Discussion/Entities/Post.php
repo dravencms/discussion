@@ -1,8 +1,6 @@
 <?php
-namespace App\Model\Discussion\Entities;
+namespace Dravencms\Model\Discussion\Entities;
 
-use App\Model\File\Entities\StructureFile;
-use App\Model\Tag\Entities\Tag;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;

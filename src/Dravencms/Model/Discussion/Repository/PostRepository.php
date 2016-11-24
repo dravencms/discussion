@@ -3,10 +3,10 @@
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
 
-namespace App\Model\Discussion\Repository;
+namespace Dravencms\Model\Discussion\Repository;
 
-use App\Model\Discussion\Entities\Discussion;
-use App\Model\Discussion\Entities\Post;
+use Dravencms\Model\Discussion\Entities\Discussion;
+use Dravencms\Model\Discussion\Entities\Post;
 use Kdyby\Doctrine\EntityManager;
 use Nette;
 

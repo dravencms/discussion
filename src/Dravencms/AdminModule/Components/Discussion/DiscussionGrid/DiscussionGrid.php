@@ -19,10 +19,10 @@
  * MA 02110-1301  USA
  */
 
-namespace Dravencms\AdminModule\Components\Discussion;
+namespace Dravencms\AdminModule\Components\Discussion\DiscussionGrid;
 
 use Dravencms\Components\BaseGridFactory;
-use App\Model\Discussion\Repository\DiscussionRepository;
+use Dravencms\Model\Discussion\Repository\DiscussionRepository;
 use App\Model\Locale\Repository\LocaleRepository;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Application\UI\Control;

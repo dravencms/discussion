@@ -1,0 +1,4 @@
+- Dravencms\AdminModule\Components\Discussion\DiscussionForm\DiscussionFormFactory
+- Dravencms\AdminModule\Components\Discussion\DiscussionGrid\DiscussionGridFactory
+- Dravencms\AdminModule\Components\Discussion\PostForm\PostFormFactory
+- Dravencms\AdminModule\Components\Discussion\PostGrid\PostGridFactory

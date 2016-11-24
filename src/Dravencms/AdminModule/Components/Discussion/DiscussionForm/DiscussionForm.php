@@ -18,11 +18,11 @@
  * MA 02110-1301  USA
  */
 
-namespace Dravencms\AdminModule\Components\Discussion;
+namespace Dravencms\AdminModule\Components\Discussion\DiscussionForm;
 
 use Dravencms\Components\BaseFormFactory;
-use App\Model\Discussion\Entities\Discussion;
-use App\Model\Discussion\Repository\DiscussionRepository;
+use Dravencms\Model\Discussion\Entities\Discussion;
+use Dravencms\Model\Discussion\Repository\DiscussionRepository;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;

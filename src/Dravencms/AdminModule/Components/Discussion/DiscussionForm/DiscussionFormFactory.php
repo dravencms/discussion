@@ -17,10 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-namespace Dravencms\AdminModule\Components\Discussion;
+namespace Dravencms\AdminModule\Components\Discussion\DiscussionForm;
 
 
-use App\Model\Discussion\Entities\Discussion;
+use Dravencms\Model\Discussion\Entities\Discussion;
 
 interface DiscussionFormFactory
 {

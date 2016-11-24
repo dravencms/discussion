@@ -18,12 +18,12 @@
  * MA 02110-1301  USA
  */
 
-namespace Dravencms\AdminModule\Components\Discussion;
+namespace Dravencms\AdminModule\Components\Discussion\PostForm;
 
 use Dravencms\Components\BaseFormFactory;
-use App\Model\Discussion\Entities\Discussion;
-use App\Model\Discussion\Entities\Post;
-use App\Model\Discussion\Repository\PostRepository;
+use Dravencms\Model\Discussion\Entities\Discussion;
+use Dravencms\Model\Discussion\Entities\Post;
+use Dravencms\Model\Discussion\Repository\PostRepository;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;

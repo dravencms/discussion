@@ -1,5 +1,5 @@
 <?php
-namespace Dravencms\FrontModule\Components\Discussion\Discussion;
+namespace Dravencms\FrontModule\Components\Discussion\Discussion\Detail;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,6 +10,7 @@ use Dravencms\Components\BaseControl;
 use Dravencms\Components\BaseFormFactory;
 use Nette\Application\UI\Form;
 use Nette\Application\Responses\JsonResponse;
+use Salamek\Cms\ICmsActionOption;
 
 /**
  * Description of Discussions
@@ -26,6 +27,10 @@ class Detail extends BaseControl
 
     /** @var BaseFormFactory @inject */
     public $baseFormFactory;
+
+    public function __construct(ICmsActionOption $cmsActionOption)
+    {
+    }
 
     public function render($id)
     {

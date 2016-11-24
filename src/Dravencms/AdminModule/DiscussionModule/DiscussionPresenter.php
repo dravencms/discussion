@@ -8,15 +8,15 @@
 
 namespace Dravencms\AdminModule\DiscussionModule;
 
-use Dravencms\AdminModule\Components\Discussion\DiscussionFormFactory;
-use Dravencms\AdminModule\Components\Discussion\DiscussionGridFactory;
-use Dravencms\AdminModule\Components\Discussion\PostFormFactory;
-use Dravencms\AdminModule\Components\Discussion\PostGridFactory;
+use Dravencms\AdminModule\Components\Discussion\DiscussionForm\DiscussionFormFactory;
+use Dravencms\AdminModule\Components\Discussion\DiscussionGrid\DiscussionGridFactory;
+use Dravencms\AdminModule\Components\Discussion\PostForm\PostFormFactory;
+use Dravencms\AdminModule\Components\Discussion\PostGrid\PostGridFactory;
 use Dravencms\AdminModule\SecuredPresenter;
-use App\Model\Discussion\Entities\Discussion;
-use App\Model\Discussion\Entities\Post;
-use App\Model\Discussion\Repository\DiscussionRepository;
-use App\Model\Discussion\Repository\PostRepository;
+use Dravencms\Model\Discussion\Entities\Discussion;
+use Dravencms\Model\Discussion\Entities\Post;
+use Dravencms\Model\Discussion\Repository\DiscussionRepository;
+use Dravencms\Model\Discussion\Repository\PostRepository;
 
 
 

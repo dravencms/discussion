@@ -1,5 +1,5 @@
 <?php
-namespace App\Model\Discussion\Entities;
+namespace Dravencms\Model\Discussion\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;

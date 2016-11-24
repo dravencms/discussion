@@ -17,11 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-namespace Dravencms\AdminModule\Components\Discussion;
+namespace Dravencms\AdminModule\Components\Discussion\PostForm;
 
 
-use App\Model\Discussion\Entities\Discussion;
-use App\Model\Discussion\Entities\Post;
+use Dravencms\Model\Discussion\Entities\Discussion;
+use Dravencms\Model\Discussion\Entities\Post;
 
 interface PostFormFactory
 {
