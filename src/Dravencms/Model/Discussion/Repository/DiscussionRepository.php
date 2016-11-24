@@ -5,7 +5,7 @@
 
 namespace Dravencms\Model\Discussion\Repository;
 
-use App\Model\BaseRepository;
+use Dravencms\Locale\TLocalizedRepository;
 use Dravencms\Model\Discussion\Entities\Discussion;
 use Kdyby\Doctrine\EntityManager;
 use Nette;
@@ -18,8 +18,10 @@ use Salamek\Cms\Models\ILocale;
  * Class DiscussionRepository
  * @package App\Model\Carousel\Repository
  */
-class DiscussionRepository extends BaseRepository implements ICmsComponentRepository
+class DiscussionRepository implements ICmsComponentRepository
 {
+    use TLocalizedRepository;
+    
     /** @var \Kdyby\Doctrine\EntityRepository */
     private $discussionRepository;
 
