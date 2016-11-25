@@ -1,6 +1,6 @@
 {
   "name": "dravencms/discussion",
-  "type": "library",
+  "type": "dravencms-package",
   "description": "Discussion module for dravencms",
   "keywords": [
     "dravencms",
@@ -23,6 +23,19 @@
   "autoload": {
     "psr-0": {
       "Dravencms\\": "src/"
+    }
+  },
+  "extra": {
+    "dravencms": {
+      "configuration": {
+        "extensions": {
+          "timeline": "Dravencms\\Discussion\\DI\\DiscussionExtension"
+        }
+      },
+      "scripts": {
+        "post-install": "Dravencms\\Discussion\\Script\\PostInstall",
+        "pre-uninstall": "Dravencms\\Discussion\\Script\\PreUninstall"
+      }
     }
   }
 }
