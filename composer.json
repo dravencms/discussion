@@ -29,7 +29,7 @@
     "dravencms": {
       "configuration": {
         "extensions": {
-          "timeline": "Dravencms\\Discussion\\DI\\DiscussionExtension"
+          "discussion": "Dravencms\\Discussion\\DI\\DiscussionExtension"
         }
       },
       "scripts": {
