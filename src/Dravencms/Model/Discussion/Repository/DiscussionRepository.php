@@ -67,6 +67,14 @@ class DiscussionRepository implements ICmsComponentRepository
     }
 
     /**
+     * @return Discussion[]
+     */
+    public function getActive()
+    {
+        return $this->discussionRepository->findBy(['isActive' => true]);
+    }
+
+    /**
      * @param $name
      * @param Discussion|null $discussionIgnore
      * @return boolean

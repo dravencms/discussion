@@ -1,2 +1,3 @@
 - Dravencms\Model\Discussion\Repository\DiscussionRepository
+- Dravencms\Model\Discussion\Repository\DiscussionCmsRepository
 - Dravencms\Model\Discussion\Repository\PostRepository
