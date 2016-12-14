@@ -1,3 +1,7 @@
 - Dravencms\Model\Discussion\Repository\DiscussionRepository
 - Dravencms\Model\Discussion\Repository\DiscussionCmsRepository
 - Dravencms\Model\Discussion\Repository\PostRepository
+
+- Dravencms\Model\Discussion\Fixtures\AclOperationFixtures
+- Dravencms\Model\Discussion\Fixtures\AclResourceFixtures
+- Dravencms\Model\Discussion\Fixtures\AdminMenuFixtures
