@@ -18,10 +18,8 @@ use Salamek\Cms\Models\ILocale;
  * Class DiscussionRepository
  * @package App\Model\Carousel\Repository
  */
-class DiscussionRepository implements ICmsComponentRepository
+class DiscussionRepository
 {
-    use TLocalizedRepository;
-    
     /** @var \Kdyby\Doctrine\EntityRepository */
     private $discussionRepository;
 
@@ -97,56 +95,4 @@ class DiscussionRepository implements ICmsComponentRepository
 
         return (is_null($qb->getQuery()->getOneOrNullResult()));
     }
-
-    /**
-     * @param string $componentAction
-     * @return ICmsActionOption[]
-     */
-    public function getActionOptions($componentAction)
-    {
-        switch ($componentAction)
-        {
-            case 'Detail':
-            case 'OverviewDetail':
-                $return = [];
-                /** @var Discussion $discussion */
-                foreach ($this->discussionRepository->findBy(['isActive' => true]) AS $discussion) {
-                    $return[] = new CmsActionOption($discussion->getName(), ['id' => $discussion->getId()]);
-                }
-                break;
-
-            case 'Overview':
-            case 'SimpleOverview':
-            case 'Navigation':
-                return null;
-                break;
-
-            default:
-                return false;
-                break;
-        }
-
-
-        return $return;
-    }
-
-    /**
-     * @param string $componentAction
-     * @param array $parameters
-     * @param ILocale $locale
-     * @return null|CmsActionOption
-     */
-    public function getActionOption($componentAction, array $parameters, ILocale $locale)
-    {
-        /** @var Discussion $found */
-        $found = $this->findTranslatedOneBy($this->discussionRepository, $locale, $parameters + ['isActive' => true]);
-
-        if ($found)
-        {
-            return new CmsActionOption( $found->getName(), $parameters);
-        }
-
-        return null;
-    }
-
 }

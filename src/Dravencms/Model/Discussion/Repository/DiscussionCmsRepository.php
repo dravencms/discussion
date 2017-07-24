@@ -71,14 +71,15 @@ class DiscussionCmsRepository implements ICmsComponentRepository
      * @param ILocale $locale
      * @return null|CmsActionOption
      */
-    public function getActionOption($componentAction, array $parameters, ILocale $locale)
+    public function getActionOption($componentAction, array $parameters)
     {
         /** @var Discussion $found */
-        $found = $this->discussionRepository->findTranslatedOneBy($this->discussionRepository, $locale, $parameters + ['isActive' => true]);
+        /*$found = $this->discussionRepository->findTranslatedOneBy($this->discussionRepository, $parameters + ['isActive' => true]);*/
 
+        $found = null; //!FIXME
         if ($found)
         {
-            return new CmsActionOption( $found->getName(), $parameters);
+            return new CmsActionOption($found->getName(), $parameters);
         }
 
         return null;
