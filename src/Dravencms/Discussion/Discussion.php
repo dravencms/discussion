@@ -3,13 +3,15 @@
 namespace Dravencms\Discussion;
 
 
+use Nette\SmartObject;
+
 /**
  * Class Discussion
  * @package Dravencms\Discussion
  */
-class Discussion extends \Nette\Object
+class Discussion
 {
-
+    use SmartObject;
     public function __construct()
     {
     }

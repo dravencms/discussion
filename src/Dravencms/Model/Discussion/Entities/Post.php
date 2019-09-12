@@ -17,8 +17,9 @@ use Nette;
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  * @ORM\Table(name="discussionPost")
  */
-class Post extends Nette\Object
+class Post
 {
+    use Nette\SmartObject;
     use Identifier;
     use TimestampableEntity;
 
