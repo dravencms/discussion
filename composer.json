@@ -31,11 +31,12 @@
       "configuration": {
         "extensions": {
           "discussion": "Dravencms\\Discussion\\DI\\DiscussionExtension"
+        },
+        "doctrine":{
+          "metadata": {
+            "Dravencms\\Model\\Discussion": "%appDir%/../vendor/dravencms/discussion/src/Dravencms/Model/Discussion"
+          }
         }
-      },
-      "scripts": {
-        "post-install": "Dravencms\\Discussion\\Script\\PostInstall",
-        "pre-uninstall": "Dravencms\\Discussion\\Script\\PreUninstall"
       }
     }
   }
