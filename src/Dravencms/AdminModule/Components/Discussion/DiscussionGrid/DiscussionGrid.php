@@ -23,6 +23,7 @@ namespace Dravencms\AdminModule\Components\Discussion\DiscussionGrid;
 
 use Dravencms\Components\BaseControl\BaseControl;
 use Dravencms\Components\BaseGrid\BaseGridFactory;
+use Dravencms\Locale\CurrentLocaleResolver;
 use Dravencms\Model\Discussion\Repository\DiscussionRepository;
 use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Kdyby\Doctrine\EntityManager;
@@ -47,6 +48,9 @@ class DiscussionGrid extends BaseControl
     /** @var LocaleRepository */
     private $localeRepository;
 
+    /** @var \Dravencms\Model\Locale\Entities\Locale|null */
+    private $currentLocale;
+
     /**
      * @var array
      */
@@ -59,7 +63,13 @@ class DiscussionGrid extends BaseControl
      * @param EntityManager $entityManager
      * @param LocaleRepository $localeRepository
      */
-    public function __construct(DiscussionRepository $discussionRepository, BaseGridFactory $baseGridFactory, EntityManager $entityManager, LocaleRepository $localeRepository)
+    public function __construct(
+        DiscussionRepository $discussionRepository,
+        BaseGridFactory $baseGridFactory,
+        EntityManager $entityManager,
+        LocaleRepository $localeRepository,
+        CurrentLocaleResolver $currentLocaleResolver
+    )
     {
         parent::__construct();
 
@@ -67,6 +77,7 @@ class DiscussionGrid extends BaseControl
         $this->discussionRepository = $discussionRepository;
         $this->entityManager = $entityManager;
         $this->localeRepository = $localeRepository;
+        $this->currentLocale = $currentLocaleResolver->getCurrentLocale();
     }
 
 
@@ -78,61 +89,48 @@ class DiscussionGrid extends BaseControl
     {
         $grid = $this->baseGridFactory->create($this, $name);
 
-        $grid->setModel($this->discussionRepository->getDiscussionQueryBuilder());
+        $grid->setDataSource($this->discussionRepository->getDiscussionQueryBuilder());
 
         $grid->addColumnText('name', 'Name')
-            ->setFilterText()
-            ->setSuggestion();
+            ->setSortable()
+            ->setFilterText();
 
-        $grid->addColumnDate('updatedAt', 'Last edit', $this->localeRepository->getLocalizedDateTimeFormat())
+        $grid->addColumnDateTime('updatedAt', 'Last edit')
+            ->setFormat($this->currentLocale->getDateTimeFormat())
+            ->setAlign('center')
             ->setSortable()
             ->setFilterDate();
-        $grid->getColumn('updatedAt')->cellPrototype->class[] = 'center';
 
         $grid->addColumnBoolean('isActive', 'Active');
 
 
         if ($this->presenter->isAllowed('discussion', 'edit')) {
 
-            $grid->addActionHref('posts', 'Posts')
-                ->setIcon('list');
+            $grid->addAction('posts', 'Posts')
+                ->setIcon('list')
+                ->setTitle('Posts')
+                ->setClass('btn btn-xs btn-default');
 
-            $grid->addActionHref('edit', 'Upravit')
-                ->setIcon('pencil');
+            $grid->addAction('edit', 'Upravit')
+                ->setIcon('pencil')
+                ->setTitle('Upravit')
+                ->setClass('btn btn-xs btn-primary');
         }
 
         if ($this->presenter->isAllowed('discussion', 'delete')) {
-            $grid->addActionHref('delete', 'Smazat', 'delete!')
-                ->setCustomHref(function($row){
-                    return $this->link('delete!', $row->getId());
-                })
-                ->setIcon('trash-o')
-                ->setConfirm(function ($row) {
-                    return ['Opravdu chcete smazat diskuzi %s ?', $row->getName()];
-                });
-
-
-            $operations = ['delete' => 'Smazat'];
-            $grid->setOperation($operations, [$this, 'gridOperationsHandler'])
-                ->setConfirm('delete', 'Opravu chcete smazat %i discussion ?');
+            $grid->addAction('delete', '', 'delete!')
+                ->setIcon('trash')
+                ->setTitle('Smazat')
+                ->setClass('btn btn-xs btn-danger ajax')
+                ->setConfirm('Do you really want to delete row %s?', 'name');
+            $grid->addGroupAction('Smazat')->onSelect[] = [$this, 'handleDelete'];
         }
-        $grid->setExport();
+        $grid->addExportCsvFiltered('Csv export (filtered)', 'discussion_filtered.csv')
+            ->setTitle('Csv export (filtered)');
+        $grid->addExportCsv('Csv export', 'discussion_sall.csv')
+            ->setTitle('Csv export');
 
         return $grid;
-    }
-
-    /**
-     * @param $action
-     * @param $ids
-     */
-    public function gridOperationsHandler($action, $ids)
-    {
-        switch ($action)
-        {
-            case 'delete':
-                $this->handleDelete($ids);
-                break;
-        }
     }
 
     /**
